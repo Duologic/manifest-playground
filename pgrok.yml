@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pgrok
+  namespace: manifest-playground
+spec:
+  containers:
+  - name: pgrrok
+    image: jerson/pgrok
+    imagePullPolicy: IfNotPresent
+    command:
+      - pgrokd
+    args:
+      - '-domain=localhost'
+      - '-tunnelAddr=:4444'
+    ports:
+      - containerPort: 4444
+  restartPolicy: Always
